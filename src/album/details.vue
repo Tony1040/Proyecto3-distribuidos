@@ -2,14 +2,14 @@
 <template>
   <div class="row">
     <div class="eleven column" style="margin-top: 3%">
-      <div v-if="show" class="row">
+      <!-- <div v-if="show" class="row">
         <img
           v-bind:src="`/src/album/` + album.imagen"
           height="700"
           width="600"
           class="twelve columns"
         />
-      </div>
+      </div> -->
       <h2 style="margin-top: 3%">{{ title }}</h2>
       <form>
         <div class="row">

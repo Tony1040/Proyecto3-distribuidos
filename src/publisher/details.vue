@@ -2,14 +2,14 @@
 <template>
   <div class="row">
     <div class="eleven column" style="margin-top: 3%">
-      <div v-if="show" class="row">
+      <!-- <div v-if="show" class="row">
         <img
           v-bind:src="`/src/publisher/` + publisher.imagen"
           height="300"
           width="600"
           class="six columns four columns offset-by-three"
         />
-      </div>
+      </div> -->
       <h2 style="margin-top: 3%">{{ title }}</h2>
       <form>
         <div class="row">

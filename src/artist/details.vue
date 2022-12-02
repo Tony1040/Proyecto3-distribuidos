@@ -2,13 +2,13 @@
 <template>
   <div class="row">
     <div class="eleven column" style="margin-top: 3%">
-      <div v-if="show" class="row">
+      <!-- <div v-if="show" class="row">
         <img
           v-bind:src="`/src/artist/` + artist.imagen"
           height="700"
           class="twelve columns"
         />
-      </div>
+      </div> -->
       <h2 style="margin-top: 3%">{{ title }}</h2>
       <form>
         <div class="row">
@@ -59,7 +59,7 @@
             />
           </div>
         </div>
-        <div v-if="create || edit" style="margin-top: 3%">
+        <!-- <div v-if="create || edit" style="margin-top: 3%">
           <h5>Seleccione una imagen</h5>
           <img
             v-bind:src="this.imagePreview"
@@ -68,7 +68,7 @@
             width="200"
           />
           <input type="file" accept="image/jpeg" @change="uploadImage" />
-        </div>
+        </div> -->
         <div class="row">
           <br />
           <br />
