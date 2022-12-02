@@ -64,7 +64,7 @@
             <input class="u-full-width" type="tel" v-model="publisher.pais" />
           </div>
         </div>
-        <div v-if="create || edit" style="margin-top: 3%">
+        <!-- <div v-if="create || edit" style="margin-top: 3%">
           <h5>Seleccione una imagen</h5>
           <img
             v-bind:src="this.imagePreview"
@@ -73,7 +73,7 @@
             width="200"
           />
           <input type="file" accept="image/jpeg" @change="uploadImage" />
-        </div>
+        </div> -->
         <div class="row">
           <br />
           <br />

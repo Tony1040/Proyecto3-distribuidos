@@ -19,7 +19,6 @@ app.get("/", async (req, res) => {
       console.log("You are now connected");
     });
     const artists = await redis.get("artists-json", ".");
-    console.log(artists); // [ '7', '5', '3', '1' ]
 
     res.json(artists);
   } catch (error) {
@@ -80,7 +79,6 @@ app.post("/", async (req, res) => {
     redis.on("connect", function () {
       console.log("You are now connected");
     });
-    console.log(JSON.stringify(req.body));
 
     const data = JSON.parse(JSON.stringify(req.body));
 
@@ -98,7 +96,6 @@ app.put("/:id", async (req, res) => {
     redis.on("connect", function () {
       console.log("You are now connected");
     });
-    console.log(JSON.stringify(req.body));
 
     const data = JSON.parse(JSON.stringify(req.body));
 
@@ -119,7 +116,19 @@ app.delete("/:id", async (req, res) => {
     const id = req.path.split("/").reverse()[0];
 
     await redis.del("artists-json", `.${id}`);
-    // await redis.decr("artist_N");
+    
+    const all_albums = await redis.get("albums-json", `.`);
+    let albums_for_artist = [];
+
+    Object.keys(all_albums).map((album) => {
+      if (all_albums[album].id_artista == id) {
+        albums_for_artist.push(all_albums[album]);
+      }
+    });
+
+    albums_for_artist.forEach(async (element) => {
+      await redis.del("albums-json", `.${element.id}`);
+    });
 
     res.json({ statusCode: 200, headers, body: "OK" });
   } catch (error) {

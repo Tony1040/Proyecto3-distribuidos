@@ -19,7 +19,6 @@ app.get("/", async (req, res) => {
       console.log("You are now connected");
     });
     const albums = await redis.get("albums-json", ".");
-    console.log(albums); // [ '7', '5', '3', '1' ]
 
     res.json(albums);
   } catch (error) {
@@ -52,30 +51,11 @@ app.get("/:id", async (req, res) => {
   }
 });
 
-// app.get("/:id/albums", async (req, res) => {
-//   try {
-//     const client = await clientPromise;
-//     console.log("params: ", req.params.id);
-
-//     const albums = await client
-//       .db(DB_NAME)
-//       .collection(ALBUMS_COLECTION)
-//       .find({ id_artista: parseInt(req.params.id) })
-//       .toArray();
-//     console.log("returning albums: ", albums);
-//     res.json(albums);
-//   } catch (error) {
-//     console.log(error);
-//     res.json({ statusCode: 400, headers, body: JSON.stringify(error) });
-//   }
-// });
-
 app.post("/", async (req, res) => {
   try {
     redis.on("connect", function () {
       console.log("You are now connected");
     });
-    console.log(JSON.stringify(req.body));
 
     const data = JSON.parse(JSON.stringify(req.body));
 
@@ -93,7 +73,6 @@ app.put("/:id", async (req, res) => {
     redis.on("connect", function () {
       console.log("You are now connected");
     });
-    console.log(JSON.stringify(req.body));
 
     const data = JSON.parse(JSON.stringify(req.body));
 
@@ -114,7 +93,6 @@ app.delete("/:id", async (req, res) => {
     const id = req.path.split("/").reverse()[0];
 
     await redis.del("albums-json", `.${id}`);
-    // await redis.decr("artist_N");
 
     res.json({ statusCode: 200, headers, body: "OK" });
   } catch (error) {
